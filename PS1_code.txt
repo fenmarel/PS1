@@ -1,18 +1,20 @@
+# function success_symbol {
+#     if [[ $? -eq 0 ]]
+#         then echo '✔'
+#     else
+#         echo '✘'
+#     fi
+# }
+
 function success_color {
-    if [[ $? -eq 0 ]] 
-        then echo -e '\033[0;32m'
-    else 
+    if [[ $? -eq 0 ]]
+        then 
+        echo -e '\033[0;32m'
+    else
         echo -e '\033[0;31m'
     fi
 }
 
-function success_symbol {
-    if [[ $? -eq 0 ]] 
-        then echo '✔'
-    else 
-        echo '✘'
-    fi
-}
 
 function git_branch {
     if git rev-parse --git-dir >/dev/null 2>&1
@@ -29,19 +31,20 @@ function git_color {
     else
         if [[ "$STATUS" != *'working directory clean'* ]]
             then
-        # red if need to commit
-        echo -e '\033[0;31m'
-    else
-        if [[ "$STATUS" == *'Your branch is ahead'* ]]
-            then
-        # yellow if need to push
-        echo -e '\033[0;33m'
-    else
-        # else cyan
-        echo -e '\033[0;32m'
+            # red if need to commit
+            echo -e '\033[0;31m'
+        else
+            if [[ "$STATUS" == *'Your branch is ahead'* ]]
+                then
+            # yellow if need to push
+            echo -e '\033[0;33m'
+        else
+            # else cyan
+            echo -e '\033[0;32m'
+        fi
     fi
-fi
 fi
 }
 
-export PS1='\[$(success_color)\]$(success_symbol) \[\033[0;36m\][\A] \[\033[0;37m\]\W/\[$(git_color)\]$(git_branch)\[\033[m\] > '
+
+export PS1='\[$(success_color)\]◉ \[\033[0;36m\][\A] \[\033[0;37m\]\W/\[$(git_color)\]$(git_branch)\[\033[m\] > '
