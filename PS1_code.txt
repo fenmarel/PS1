@@ -1,11 +1,3 @@
-# function success_symbol {
-#     if [[ $? -eq 0 ]]
-#         then echo '✔'
-#     else
-#         echo '✘'
-#     fi
-# }
-
 function success_color {
     if [[ $? -eq 0 ]]
         then 
@@ -14,7 +6,6 @@ function success_color {
         echo -e '\033[0;31m'
     fi
 }
-
 
 function git_branch {
     if git rev-parse --git-dir >/dev/null 2>&1
@@ -47,4 +38,4 @@ fi
 }
 
 
-export PS1='\[$(success_color)\]◉ \[\033[0;36m\][\A] \[\033[0;37m\]\W/\[$(git_color)\]$(git_branch)\[\033[m\] > '
+export PS1='\[$(success_color)\]◉ \[\033[0;36m\][\A] \[\033[0;37m\]\W/\[$(git_color)\]$(git_branch)\[\033[0;36m\] > \[\033[m\]'
