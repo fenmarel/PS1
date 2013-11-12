@@ -1,8 +1,16 @@
-function success {
+function success_color {
     if [[ $? -eq 0 ]] 
-        then echo -e "\033[0;32m ✔"
+        then echo -e '\033[0;32m'
     else 
-        echo -e "\033[0;31m ✘"
+        echo -e '\033[0;31m'
+    fi
+}
+
+function success_symbol {
+    if [[ $? -eq 0 ]] 
+        then echo '✔'
+    else 
+        echo '✘'
     fi
 }
 
@@ -36,4 +44,4 @@ fi
 fi
 }
 
-export PS1='$(success) \[\033[0;36m\][\A] \[\033[0;37m\]\W/\[$(git_color)\]$(git_branch)\[\033[m\] > '
+export PS1='\[$(success_color)\]$(success_symbol) \[\033[0;36m\][\A] \[\033[0;37m\]\W/\[$(git_color)\]$(git_branch)\[\033[m\] > '
